@@ -465,7 +465,7 @@ public class StereoRenderingRenderer implements GLSurfaceView.Renderer
             boolean okes = true;
             if (Eyewear.getInstance().isDeviceDetected() || okes)
             {
-                Log.e(LOGTAG, "OK2");
+                Log.e(LOGTAG, "OK-2");
                 int eyeViewportPosX = viewportPosX;
                 int eyeViewportPosY = viewportPosY;
                 int eyeViewportSizeX = viewportSizeX;
