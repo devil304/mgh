@@ -236,8 +236,8 @@ public class StereoRenderingRenderer implements GLSurfaceView.Renderer
     private void renderFrame()
     {
         Eyewear eyewear = Eyewear.getInstance();
-        checkEyewearStereo(eyewear);
-        int numEyes = 1;
+        //checkEyewearStereo(eyewear);
+        int numEyes = 2;
         if (eyewear.isStereoEnabled())
         {
             numEyes = 2;
@@ -278,8 +278,8 @@ public class StereoRenderingRenderer implements GLSurfaceView.Renderer
             int eyeViewportPosY = viewportPosY;
             int eyeViewportSizeX = viewportSizeX;
             int eyeViewportSizeY = viewportSizeY;
-
-            if (eyewear.isDeviceDetected())
+            boolean test = true;
+            if (eyewear.isDeviceDetected() || test)
             {
                 if (numEyes < 2)
                 {
@@ -367,7 +367,7 @@ public class StereoRenderingRenderer implements GLSurfaceView.Renderer
         mRenderer.end();
     }
 
-    private void checkEyewearStereo(Eyewear eyewear)
+    /*private void checkEyewearStereo(Eyewear eyewear)
     {
         if (eyewear.isDeviceDetected() && eyewear.isStereoCapable())
         {
@@ -390,14 +390,15 @@ public class StereoRenderingRenderer implements GLSurfaceView.Renderer
         }
         else
         {
+            mIsEyewear = true;
             if (mIsEyewear)
             {
-                mIsEyewear = false;
+                //mIsEyewear = false;
                 // Re-acquire the orthographic projection matrix which may have changed
                 vbOrthoProjMatrix = Eyewear.getInstance().getOrthographicProjectionMatrix();
             }
         }
-    }
+    }*/
     
     private void renderVideoBackground(int vbVideoTextureUnit, int numEyes)
     {
