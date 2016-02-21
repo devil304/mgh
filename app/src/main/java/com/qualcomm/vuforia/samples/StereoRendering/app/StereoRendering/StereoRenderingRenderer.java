@@ -150,7 +150,7 @@ public class StereoRenderingRenderer implements GLSurfaceView.Renderer
 
         // If this device is not supported, or it is occluded (that is, we show a video background), then we adopt the
         // standard Vuforia viewport calculation by which we adjust the viewport to match the video aspect ratio.
-        if (!eyewear.isDeviceDetected() || !eyewear.isSeeThru())
+       if (!eyewear.isDeviceDetected() || !eyewear.isSeeThru())
         {
             viewportPosX = ((metrics.widthPixels - backgroundSize.getData()[0]) / 2) + backgroundPos.getData()[0];
             viewportPosY = ((metrics.heightPixels - backgroundSize.getData()[1]) / 2) + backgroundPos.getData()[1];
@@ -237,7 +237,7 @@ public class StereoRenderingRenderer implements GLSurfaceView.Renderer
     {
         Eyewear eyewear = Eyewear.getInstance();
         checkEyewearStereo(eyewear);
-        int numEyes = 1;
+        int numEyes = 2;
         if (eyewear.isStereoEnabled())
         {
             numEyes = 2;
@@ -278,15 +278,17 @@ public class StereoRenderingRenderer implements GLSurfaceView.Renderer
             int eyeViewportPosY = viewportPosY;
             int eyeViewportSizeX = viewportSizeX;
             int eyeViewportSizeY = viewportSizeY;
-
-            if (eyewear.isDeviceDetected())
+            boolean test = true;
+            if (eyewear.isDeviceDetected() || test)
             {
+                Log.e(LOGTAG, "OK0");
                 if (numEyes < 2)
                 {
                     projectionMatrix = Eyewear.getInstance().getProjectionMatrix(EYEID.EYEID_MONOCULAR);
                 }
                 else
                 {
+                    Log.e(LOGTAG, "OK11");
                     // Setup the viewport filling half the screen
                     // Position viewport for left or right eye
                     if (eyeIdx == 0) // left eye
@@ -460,8 +462,10 @@ public class StereoRenderingRenderer implements GLSurfaceView.Renderer
         // Then, we issue the render call
         for (int eyeIdx=0; eyeIdx<numEyes; eyeIdx++)
         {
-            if (Eyewear.getInstance().isDeviceDetected())
+            boolean okes = true;
+            if (Eyewear.getInstance().isDeviceDetected() || okes)
             {
+                Log.e(LOGTAG, "OK-2");
                 int eyeViewportPosX = viewportPosX;
                 int eyeViewportPosY = viewportPosY;
                 int eyeViewportSizeX = viewportSizeX;
