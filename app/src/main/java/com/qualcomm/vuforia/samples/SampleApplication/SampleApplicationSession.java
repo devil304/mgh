@@ -578,7 +578,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface
     
     
     // Configures the video mode and sets offsets for the camera's image
-    private void configureVideoBackground()//Gdzies tutaj
+    private void configureVideoBackground()
     {
         CameraDevice cameraDevice = CameraDevice.getInstance();
         VideoMode vm = cameraDevice.getVideoMode(CameraDevice.MODE.MODE_DEFAULT);
