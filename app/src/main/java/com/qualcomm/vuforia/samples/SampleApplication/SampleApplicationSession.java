@@ -35,7 +35,7 @@ import com.qualcomm.vuforia.samples.StereoRendering.R;
 public class SampleApplicationSession implements UpdateCallbackInterface
 {
     
-    private static final String LOGTAG = "Vuforia_Sample_Applications";
+    private static final String LOGTAG = "Vuforia_Sample_App";
     
     // Reference to the current activity
     private Activity mActivity;
@@ -578,7 +578,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface
     
     
     // Configures the video mode and sets offsets for the camera's image
-    private void configureVideoBackground()
+    private void configureVideoBackground()//Gdzies tutaj
     {
         CameraDevice cameraDevice = CameraDevice.getInstance();
         VideoMode vm = cameraDevice.getVideoMode(CameraDevice.MODE.MODE_DEFAULT);
@@ -600,6 +600,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface
         int xSize = 0, ySize = 0;
         if (mIsPortrait)
         {
+            Log.e(LOGTAG, "PLSNO");
             xSize = (int) (vm.getHeight() * (mScreenHeight / (float) vm
                 .getWidth()));
             ySize = mScreenHeight;
@@ -612,12 +613,14 @@ public class SampleApplicationSession implements UpdateCallbackInterface
             }
         } else
         {
+            Log.e(LOGTAG, "Test0");
             xSize = mScreenWidth;
             ySize = (int) (vm.getHeight() * (mScreenWidth / (float) vm
                 .getWidth()));
             
             if (ySize < mScreenHeight)
             {
+                Log.e(LOGTAG, "Test1");
                 xSize = (int) (mScreenHeight * (vm.getWidth() / (float) vm
                     .getHeight()));
                 ySize = mScreenHeight;
@@ -639,7 +642,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface
         // In this example we selected the default preset hint for best Mobile AR Experience
         // See website documentation for more information on the rendering hint modes 
         // relevant to your AR experience.
-        int myRenderingOptions = Renderer.FPSHINT_FLAGS.FPSHINT_DEFAULT_FLAGS;	
+        int myRenderingOptions = Renderer.FPSHINT_FLAGS.FPSHINT_FAST;
      
         // Optical see-through devices don't render video background
         if (Eyewear.getInstance().isDeviceDetected() &&
@@ -660,7 +663,7 @@ public class SampleApplicationSession implements UpdateCallbackInterface
         }
         else
         {
-            Log.i(LOGTAG,"Configured frame rate set to recommended frame rate: " + vuforiaRecommendedFPS + " fps");        
+            Log.e(LOGTAG,"Configured frame rate set to recommended frame rate: " + vuforiaRecommendedFPS + " fps");
         }   
         return true;
     }
