@@ -7,15 +7,16 @@ countries.
 
 package com.qualcomm.vuforia.samples.StereoRendering.app.StereoRendering;
 
-import java.nio.Buffer;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-
 import android.util.Log;
 
 import com.qualcomm.vuforia.Renderer;
 import com.qualcomm.vuforia.VIDEO_BACKGROUND_REFLECTION;
 import com.qualcomm.vuforia.VideoBackgroundTextureInfo;
+import java.util.Arrays;
+
+import java.nio.Buffer;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 
 public class BackgroundMesh
 {
@@ -87,26 +88,40 @@ public class BackgroundMesh
         short currentVertexIndex = 0;
         mOrthoQuadVertices = ByteBuffer.allocateDirect(
             vbNumVertexRows * vbNumVertexCols * 3 * SIZE_OF_FLOAT).order(
-            ByteOrder.nativeOrder());
+                ByteOrder.nativeOrder());
         mOrthoQuadTexCoords = ByteBuffer.allocateDirect(
             vbNumVertexRows * vbNumVertexCols * 2 * SIZE_OF_FLOAT).order(
-            ByteOrder.nativeOrder());
+                ByteOrder.nativeOrder());
         mOrthoQuadIndices = ByteBuffer.allocateDirect(getNumObjectIndex())
             .order(ByteOrder.nativeOrder());
-        
+
+        String vxt = Arrays.toString(mOrthoQuadVertices.array());
+        Log.d(LOGTAG,vxt);
+        vxt = Arrays.toString(mOrthoQuadTexCoords.array());
+        Log.d(LOGTAG,vxt);
+        vxt = Arrays.toString(mOrthoQuadIndices.array());
+        Log.d(LOGTAG,vxt);
         for (int j = 0; j < vbNumVertexRows; j++)
         {
             for (int i = 0; i < vbNumVertexCols; i++)
             {
+                String testi = Integer.toString(i);
+                String testj = Integer.toString(j);
+                Log.d(LOGTAG,testi+","+testj);
                 // We populate the mesh with a regular grid
                 mOrthoQuadVertices
-                    .putFloat(((colSlope * i) - (totalSpan / 2.0f)));
+                        .putFloat(((colSlope * i) - (totalSpan / 2.0f)));
                 // We subtract this because the values range from -totalSpan/2 to totalSpan/2
                 mOrthoQuadVertices
                     .putFloat(((rowSlope * j) - (totalSpan / 2.0f)));
                 // It is all a flat polygon orthogonal to the view vector
-                mOrthoQuadVertices.putFloat(0.0f);                              
-                
+                mOrthoQuadVertices.putFloat(0.0f);
+                vxt = Arrays.toString(mOrthoQuadVertices.array());
+                Log.d(LOGTAG,vxt);
+                vxt = Arrays.toString(mOrthoQuadTexCoords.array());
+                Log.d(LOGTAG, vxt);
+                vxt = Arrays.toString(mOrthoQuadIndices.array());
+                Log.d(LOGTAG, vxt);
                 float u = 0.0f, v = 0.0f;
                 
                 // We also populate its associated texture coordinate
@@ -129,7 +144,12 @@ public class BackgroundMesh
                 
                 mOrthoQuadTexCoords.putFloat(u);
                 mOrthoQuadTexCoords.putFloat(v);
-                
+                vxt = Arrays.toString(mOrthoQuadVertices.array());
+                Log.d(LOGTAG,vxt);
+                vxt = Arrays.toString(mOrthoQuadTexCoords.array());
+                Log.d(LOGTAG,vxt);
+                vxt = Arrays.toString(mOrthoQuadIndices.array());
+                Log.d(LOGTAG, vxt);
                 // Log.d(LOGTAG, "Vert (Text): " +
                 // ((colSlope*i)-(totalSpan/2.0f)) + "," +
                 // ((rowSlope*j)-(totalSpan/2.0f)) + " (" + u + "," + v +")");
@@ -156,6 +176,12 @@ public class BackgroundMesh
                         mOrthoQuadIndices.put((byte) (currentVertexIndex
                             + vbNumVertexCols - 1));
                     }
+                    vxt = Arrays.toString(mOrthoQuadVertices.array());
+                    Log.d(LOGTAG,vxt);
+                    vxt = Arrays.toString(mOrthoQuadTexCoords.array());
+                    Log.d(LOGTAG,vxt);
+                    vxt = Arrays.toString(mOrthoQuadIndices.array());
+                    Log.d(LOGTAG,vxt);
                 }
                 currentVertexIndex += 1; // Vertex index increased by one
             }
@@ -164,7 +190,12 @@ public class BackgroundMesh
         mOrthoQuadVertices.rewind();
         mOrthoQuadTexCoords.rewind();
         mOrthoQuadIndices.rewind();
-        
+        vxt = Arrays.toString(mOrthoQuadVertices.array());
+        Log.d(LOGTAG,vxt);
+        vxt = Arrays.toString(mOrthoQuadTexCoords.array());
+        Log.d(LOGTAG, vxt);
+        vxt = Arrays.toString(mOrthoQuadIndices.array());
+        Log.d(LOGTAG, vxt);
     }
     
     

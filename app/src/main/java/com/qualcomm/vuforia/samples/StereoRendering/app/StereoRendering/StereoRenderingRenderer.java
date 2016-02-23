@@ -281,14 +281,14 @@ public class StereoRenderingRenderer implements GLSurfaceView.Renderer
             boolean test = true;
             if (eyewear.isDeviceDetected() || test)
             {
-                Log.e(LOGTAG, "OK0");
+               // Log.e(LOGTAG, "OK0");
                 if (numEyes < 2)
                 {
                     projectionMatrix = Eyewear.getInstance().getProjectionMatrix(EYEID.EYEID_MONOCULAR);
                 }
                 else
                 {
-                    Log.e(LOGTAG, "OK11");
+                   // Log.e(LOGTAG, "OK11");
                     // Setup the viewport filling half the screen
                     // Position viewport for left or right eye
                     if (eyeIdx == 0) // left eye
@@ -465,7 +465,7 @@ public class StereoRenderingRenderer implements GLSurfaceView.Renderer
             boolean okes = true;
             if (Eyewear.getInstance().isDeviceDetected() || okes)
             {
-                Log.e(LOGTAG, "OK-2");
+                //Log.e(LOGTAG, "OK-2");
                 int eyeViewportPosX = viewportPosX;
                 int eyeViewportPosY = viewportPosY;
                 int eyeViewportSizeX = viewportSizeX;
